@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "M6G1gWzKruc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\snake\\Desktop\\Cosas\\Escuela\\Sexto_Semestre\\Administracion de Proyectos de Software\\Project\\MemoryGame-Revival\\MemoryGame.Server\\src\\MemoryGame.API\\MemoryGame.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\snake\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.4\\microsoft.aspnetcore.openapi.10.0.4.nupkg.sha512",
+    "C:\\Users\\snake\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
