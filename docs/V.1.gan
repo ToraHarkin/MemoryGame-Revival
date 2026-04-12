@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-04" view-index="0" gantt-divider-location="406" resource-divider-location="300" version="3.3.3322" locale="es_ES">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="221" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="83" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="86" order="2"/>
+        <field id="tpd15" name="Notas" width="20" order="3"/>
+        <option id="taskLabelUp" value=""/>
+        <option id="taskLabelDown" value=""/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <timeline><![CDATA[3]]></timeline>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nombre" width="206" order="0"/>
+        <field id="1" name="Función" width="90" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="3" uid="ed5d7543f9934c58882c3897c2392b9c" name="Fundación del proyecto" meeting="false" start="2026-04-11" duration="4" complete="66" priority="2" expand="true">
+            <task id="4" uid="e517f348682040f1954cd2880e9b14c6" name="Crear repo con tag v1.0.0." meeting="false" start="2026-04-11" duration="1" complete="100" priority="0" expand="true"/>
+            <task id="6" uid="c94a3e6dc948486a81c3a69638b49c2b" name="Plan del Proyecto aprobado" meeting="false" start="2026-04-11" duration="3" complete="100" expand="true"/>
+            <task id="5" uid="002f95aeb87b4b7cb29d3e29db9d7c3a" name="Solución .NET 10 + ASP.NET Core" meeting="false" start="2026-04-12" duration="1" complete="100" priority="0" expand="true"/>
+            <task id="57" uid="41ed5c3763bb4bebae76dc932a33b1cb" name="Configuración del motor gráfico" meeting="false" start="2026-04-12" duration="1" complete="0" priority="2" expand="true"/>
+            <task id="28" uid="3d175daf5c2f4b2b895176c97080c6a3" name="EF Core configurado con Code-First (sustituyendo el .edmx database-first)" meeting="false" start="2026-04-12" duration="1" complete="100" priority="4" expand="true"/>
+            <task id="29" uid="56020729eb3348a8a0bc066461e1936e" name="10 entidades migradas (user, match, card, inventory, etc.)" meeting="false" start="2026-04-13" duration="1" complete="0" expand="true">
+                <depend id="31" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="30" uid="2941ba2a8efb48a195b35243a0392771" name="Pipeline de migraciones de base de datos funcional" meeting="false" start="2026-04-14" duration="1" complete="0" priority="4" expand="true"/>
+            <task id="51" uid="2619df8812074d8db682a8a3b5f111ed" name="Infraestructura lista para comenzar a desarrollar" meeting="true" start="2026-04-14" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="7" uid="b1f07dcdf3ff4331934321aabeaa5d31" name="Autenticación y perfil operativos" meeting="false" start="2026-04-14" duration="8" complete="0" expand="true">
+            <task id="8" uid="f3a7005971da48b28cfb9976eb51d8c3" name="16 endpoints REST (registro, login, perfil)" meeting="false" start="2026-04-14" duration="4" complete="0" expand="true">
+                <depend id="59" type="2" difference="0" hardness="Strong"/>
+                <task id="31" uid="130050e4204b45b2891e0664d55a3faf" name="Registro completo (con verificación por email)" meeting="false" start="2026-04-14" duration="1" complete="0" expand="true"/>
+                <task id="32" uid="13e6ac5eac4d4921bab1952905ded9d2" name="Login / Logout / Sesiones de invitado" meeting="false" start="2026-04-16" duration="1" complete="0" expand="true"/>
+                <task id="33" uid="ece23cd4e42748aab908e62121863c34" name="Perfil (avatar, username, etc.)" meeting="false" start="2026-04-17" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="9" uid="08ca88d3f32743eb89b1e1ff39305585" name="Manejo de sesiones con tokens (reemplaza userSession de WCF)" meeting="false" start="2026-04-18" duration="1" complete="0" expand="true"/>
+            <task id="58" uid="3e7a2a593257493b816137f2f281a4f0" name="Desarrollo de Interfaz UI (Auth)" meeting="false" start="2026-04-18" duration="2" complete="0" priority="2" expand="true"/>
+            <task id="45" uid="334bcfe6653f47efae46e8f25882e8bd" name="Documentación de API REST (Auth)" meeting="false" start="2026-04-18" duration="1" complete="0" expand="true"/>
+            <task id="46" uid="16037ac35e16401c8f3ce058bfd93356" name="Guía de tokens JWT" meeting="false" start="2026-04-18" duration="1" complete="0" expand="true"/>
+            <task id="10" uid="acb68a6ac8f74a48be545b1dd0d5bce7" name="Pruebas de SessionServiceTest migradas" meeting="false" start="2026-04-19" duration="1" complete="0" expand="true"/>
+            <task id="59" uid="886d9d39dae04f4d9a4fa0e5cbd12a68" name="Integración API REST (Auth)" meeting="false" start="2026-04-18" duration="2" complete="0" priority="2" expand="true"/>
+            <task id="52" uid="6d7be3e4b1e544dca02094d187c1f9d0" name="Los usuarios pueden registrarse, iniciar sesión y gestionar su perfil" color="#8cb6ce" meeting="true" start="2026-04-22" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="11" uid="228ffdd17667462ab596c6db205e2add" name="Social y estadísticas operativos" meeting="false" start="2026-04-23" duration="6" complete="0" expand="true">
+            <task id="12" uid="4175a1abcf474852931bce35bca9adc7" name="12 endpoints REST (amigos, historial)" meeting="false" start="2026-04-23" duration="2" complete="0" expand="true">
+                <depend id="47" type="2" difference="0" hardness="Strong"/>
+                <depend id="61" type="2" difference="0" hardness="Strong"/>
+                <task id="34" uid="f9c04f8ec4d444388dd01d1873294cec" name="Amigos (solicitar, aceptar/rechazar, listar)" meeting="false" start="2026-04-23" duration="1" complete="0" expand="true"/>
+                <task id="35" uid="cb25b5ba212c4408b261cb2b10a93cff" name="Redes sociales: agregar, eliminar" meeting="false" start="2026-04-24" duration="1" complete="0" expand="true"/>
+                <task id="36" uid="3bc26d07fb244e0e8b8a7bdde5dbb3ab" name="Historial de partidas, reportar usuario" meeting="false" start="2026-04-24" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="60" uid="b5b26e2115c74ca38b969370266d8382" name="Desarrollo de Interfaz UI (Social)" meeting="false" start="2026-04-25" duration="2" complete="0" priority="2" expand="true"/>
+            <task id="61" uid="1fd2ed41d1c0446197756c9ef6fb137b" name="Integración API REST (Social)" meeting="false" start="2026-04-25" duration="1" complete="0" priority="2" expand="true"/>
+            <task id="13" uid="9610811b46cc4b159008a846d59fb079" name="Pruebas de SocialCore y StatisticsCore migradas" meeting="false" start="2026-04-28" duration="1" complete="0" expand="true"/>
+            <task id="47" uid="e42e8401dcd545789fa7273ae0523866" name="Documentación de API REST (Social/Estadísticas)" meeting="false" start="2026-04-25" duration="1" complete="0" expand="true"/>
+            <task id="53" uid="d15d4e98799b4d5898faca70b310fd5f" name="El sistema social está completo" meeting="true" start="2026-04-28" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="15" uid="fe79c55895064a0b83b58bfa387a999c" name="Lobby en tiempo real operativo" meeting="false" start="2026-04-29" duration="8" complete="0" priority="2" expand="true">
+            <depend id="64" type="2" difference="0" hardness="Strong"/>
+            <task id="16" uid="2f7df4d8e28b440c8d3ce3a327cf151b" name="Hub SignalR implementado (reemplaza IGameLobbyCallback)" meeting="false" start="2026-04-29" duration="2" complete="0" priority="2" expand="true">
+                <depend id="21" type="2" difference="0" hardness="Strong"/>
+                <depend id="62" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="17" uid="91c0316a33434701b61a0bdb619bfc1d" name="9 callbacks migrados a eventos SignalR" meeting="false" start="2026-05-01" duration="4" complete="0" expand="true">
+                <task id="18" uid="b6f3af9f74654dd587db3eba8385556e" name="Migración de callbacks (Chat, PlayerJoined/Left, UpdatePlayerList)" meeting="false" start="2026-05-01" duration="1" complete="0" priority="2" expand="true"/>
+                <task id="37" uid="4dcff372e43c485eaf7bced6d970bd8f" name="Migración de callbacks (VoteToKick, Emails)" meeting="false" start="2026-05-01" duration="4" complete="0" priority="2" expand="true"/>
+            </task>
+            <task id="48" uid="f1fa682c5d6c4024baaec3d376e1a172" name="Documentación de la nueva arquitectura en tiempo real (SignalR vs WCF)" meeting="false" start="2026-05-03" duration="1" complete="0" priority="2" expand="true"/>
+            <task id="66" uid="b59e7aae281449e693cbfee85454eb40" name="Desarrollo de Interfaz UI (Lobby)" meeting="false" start="2026-05-01" duration="1" complete="0" expand="true"/>
+            <task id="62" uid="0a898e59c5764862b43e548f05852d17" name="Integración SignalR en Godot (Lobby)" meeting="false" start="2026-05-01" duration="4" complete="0" priority="2" expand="true"/>
+            <task id="38" uid="f907063f3ef24bcf9b6ac02f39e22d50" name="Gestión de lobbies y estado de sesiones de juego" meeting="false" start="2026-05-05" duration="1" complete="0" priority="2" expand="true"/>
+            <task id="39" uid="c09e3cf6fcb9442fb72d3f74e6ec0c7f" name="Pruebas de LobbyServiceTest migradas" meeting="false" start="2026-05-06" duration="1" complete="0" priority="2" expand="true"/>
+            <task id="54" uid="867165d2902a49a9ae3288e2d52c7454" name="Callbacks WCF reemplazados con SignalR" meeting="true" start="2026-05-06" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="19" uid="e84f003c0d5b4cd0b9e2059a252cf36a" name="Lógica de juego operativa" meeting="false" start="2026-05-01" duration="16" complete="0" expand="true">
+            <depend id="24" type="2" difference="0" hardness="Strong"/>
+            <task id="21" uid="3e3641a774914fb1b1b2db59cf83a3e9" name="Desarrollo de Interfaz UI (Tablero)" meeting="false" start="2026-05-01" duration="2" complete="0" priority="4" expand="true"/>
+            <task id="20" uid="0dd0b8114ab64ed1a9c59fcfbd7739f8" name="Flujo de juego completo vía SignalR" meeting="false" start="2026-05-07" duration="4" complete="0" expand="true">
+                <task id="40" uid="51ada2e59eea475e9002675b0188fc6c" name="StartGame, FlipCard, turno, puntuación, fin de partida" meeting="false" start="2026-05-07" duration="2" complete="0" priority="4" expand="true"/>
+                <task id="41" uid="7ba0de7f5e2d4d019a63c6dfa4eac235" name="ShowCard, HideCards, CardFlipped, SetCardsAsMatched, UpdateScore" meeting="false" start="2026-05-09" duration="2" complete="0" priority="4" expand="true"/>
+            </task>
+            <task id="63" uid="a7e25541650f44518b156c484cdcb7b0" name="Animación y Lógica de Juego (SignalR)" meeting="false" start="2026-05-11" duration="5" complete="0" expand="true"/>
+            <task id="42" uid="b2acd7d1f50a4911b632240bb3091c6b" name="Pruebas de GameServiceTest migradas" meeting="false" start="2026-05-15" duration="1" complete="0" expand="true"/>
+            <task id="49" uid="85da102c6ee04984b5e2e97365a62ecc" name="Documentación del flujo de juego y estados del cliente" meeting="false" start="2026-05-15" duration="2" complete="0" expand="true"/>
+            <task id="55" uid="d232fffc2e484b27ac828339f93b5a8f" name="El juego funciona end-to-end" meeting="true" start="2026-05-16" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="23" uid="6bef0a1442e5422099ee3f4fd4d426cf" name="Validación y cierre" meeting="false" start="2026-05-07" duration="16" complete="0" expand="true">
+            <task id="64" uid="e2231c810d4e46a6b5f8e44a39d7e930" name="Documentación de la Arquitectura del Cliente" meeting="false" start="2026-05-07" duration="1" complete="0" expand="true"/>
+            <task id="22" uid="ac7f2ddd6be4407bb985ec9fe7064a44" name="Todas las pruebas pasando (32 clases de test)" meeting="false" start="2026-05-17" duration="1" complete="0" expand="true"/>
+            <task id="24" uid="c5e03110721244919eb7dc5d3556b4a2" name="Prueba de regresión funcional completa" meeting="false" start="2026-05-17" duration="1" complete="0" expand="true"/>
+            <task id="25" uid="4d8844ff36b1431c9a1e79a7276e4eff" name="Secrets/configuración segura (email, cadena de conexión fuera de config)" meeting="false" start="2026-05-18" duration="1" complete="0" expand="true"/>
+            <task id="50" uid="f23621cfb9454e068c638747783c5cab" name="Manual de despliegue en infraestructura Linux" meeting="false" start="2026-05-19" duration="2" complete="0" expand="true"/>
+            <task id="43" uid="253991edbfe7444584f1cd6f5f9b72ca" name="Documentación técnica final (gestores)" meeting="false" start="2026-05-21" duration="1" complete="0" expand="true"/>
+            <task id="44" uid="4db36faf07a144e991db21b447977d34" name="Tag v2.0.0 + Release en GitHub" meeting="false" start="2026-05-22" duration="1" complete="0" expand="true"/>
+            <task id="56" uid="9005432333964dd78c87f65e58e5e9d6" name="Sistema estable y entregable" meeting="true" start="2026-05-22" duration="0" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Isa Gabriela Torres Garcia" function="1" contacts="" phone="">
+            <rate name="standard" value="1600"/>
+        </resource>
+        <resource id="2" name="Jorge Irán Pérez Segovia" function="Default:1" contacts="" phone="">
+            <rate name="standard" value="2000"/>
+        </resource>
+        <resource id="3" name="Luis Donaldo Ortiz Garcia" function="1" contacts="" phone="">
+            <rate name="standard" value="2400"/>
+        </resource>
+        <resource id="4" name="Diego Ivan  Enriquez Morales" function="2" contacts="" phone="">
+            <rate name="standard" value="1600"/>
+        </resource>
+    </resources>
+    <allocations>
+        <allocation task-id="44" resource-id="0" function="Default:1" responsible="false" load="15.0"/>
+        <allocation task-id="53" resource-id="0" function="Default:1" responsible="true" load="0.0"/>
+        <allocation task-id="57" resource-id="0" function="1" responsible="true" load="35.0"/>
+        <allocation task-id="58" resource-id="0" function="1" responsible="true" load="25.0"/>
+        <allocation task-id="60" resource-id="0" function="1" responsible="true" load="30.0"/>
+        <allocation task-id="61" resource-id="0" function="1" responsible="true" load="30.0"/>
+        <allocation task-id="62" resource-id="0" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="21" resource-id="0" function="1" responsible="true" load="25.0"/>
+        <allocation task-id="63" resource-id="0" function="1" responsible="true" load="25.0"/>
+        <allocation task-id="64" resource-id="0" function="Default:1" responsible="true" load="35.0"/>
+        <allocation task-id="59" resource-id="0" function="1" responsible="true" load="35.0"/>
+        <allocation task-id="38" resource-id="0" function="1" responsible="false" load="20.0"/>
+        <allocation task-id="22" resource-id="0" function="1" responsible="false" load="20.0"/>
+        <allocation task-id="66" resource-id="0" function="1" responsible="true" load="30.0"/>
+        <allocation task-id="45" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
+        <allocation task-id="46" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="48" resource-id="2" function="Default:1" responsible="true" load="40.0"/>
+        <allocation task-id="50" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="43" resource-id="2" function="Default:1" responsible="true" load="35.0"/>
+        <allocation task-id="44" resource-id="2" function="Default:1" responsible="true" load="15.0"/>
+        <allocation task-id="53" resource-id="2" function="Default:1" responsible="true" load="0.0"/>
+        <allocation task-id="47" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
+        <allocation task-id="49" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="22" resource-id="2" function="Default:1" responsible="true" load="20.0"/>
+        <allocation task-id="6" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
+        <allocation task-id="5" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="20.0"/>
+        <allocation task-id="8" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="0.0"/>
+        <allocation task-id="12" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="0.0"/>
+        <allocation task-id="16" resource-id="3" function="Default:0" responsible="true" load="30.0"/>
+        <allocation task-id="17" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="0.0"/>
+        <allocation task-id="20" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="0.0"/>
+        <allocation task-id="28" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="30.0"/>
+        <allocation task-id="29" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="30.0"/>
+        <allocation task-id="30" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="30.0"/>
+        <allocation task-id="31" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="30.0"/>
+        <allocation task-id="32" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="30.0"/>
+        <allocation task-id="33" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="30.0"/>
+        <allocation task-id="9" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="15.0"/>
+        <allocation task-id="34" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="30.0"/>
+        <allocation task-id="35" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="15.0"/>
+        <allocation task-id="36" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="15.0"/>
+        <allocation task-id="18" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="40.0"/>
+        <allocation task-id="37" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="40.0"/>
+        <allocation task-id="38" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="20.0"/>
+        <allocation task-id="40" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="25.0"/>
+        <allocation task-id="41" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="25.0"/>
+        <allocation task-id="44" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="15.0"/>
+        <allocation task-id="53" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="0.0"/>
+        <allocation task-id="22" resource-id="3" function="1" responsible="false" load="20.0"/>
+        <allocation task-id="25" resource-id="3" function="1" responsible="true" load="25.0"/>
+        <allocation task-id="4" resource-id="3" function="1" responsible="true" load="5.0"/>
+        <allocation task-id="10" resource-id="4" function="2" responsible="true" load="30.0"/>
+        <allocation task-id="13" resource-id="4" function="2" responsible="true" load="30.0"/>
+        <allocation task-id="39" resource-id="4" function="2" responsible="true" load="25.0"/>
+        <allocation task-id="42" resource-id="4" function="2" responsible="true" load="35.0"/>
+        <allocation task-id="22" resource-id="4" function="2" responsible="false" load="20.0"/>
+        <allocation task-id="24" resource-id="4" function="2" responsible="true" load="35.0"/>
+        <allocation task-id="44" resource-id="4" function="2" responsible="false" load="15.0"/>
+    </allocations>
+    <vacations>
+        <vacation start="2026-04-06" end="2026-04-11" resourceid="3"/>
+    </vacations>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="1" name="Desarrollador"/>
+        <role id="2" name="Ingeniero de Pruebas"/>
+    </roles>
+</project>
