@@ -8,5 +8,6 @@
   <Folder Name="/tests/">
     <Project Path="tests/MemoryGame.Application.Tests/MemoryGame.Application.Tests.csproj" />
     <Project Path="tests/MemoryGame.Domain.Tests/MemoryGame.Domain.Tests.csproj" />
+    <Project Path="tests/MemoryGame.Infrastructure.Tests/MemoryGame.Infrastructure.Tests.csproj" />
   </Folder>
 </Solution>
