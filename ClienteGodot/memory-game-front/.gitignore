@@ -1,0 +1,10 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+
+# C# / .NET (Reglas extra para el frontend)
+.mono/
+bin/
+obj/
+*.csproj.user
