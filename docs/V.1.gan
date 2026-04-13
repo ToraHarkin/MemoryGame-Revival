@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-04" view-index="0" gantt-divider-location="406" resource-divider-location="300" version="3.3.3322" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-04" view-index="0" gantt-divider-location="391" resource-divider-location="300" version="3.3.3322" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="221" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="83" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="86" order="2"/>
+        <field id="tpd3" name="Nombre" width="212" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="80" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="83" order="2"/>
         <field id="tpd15" name="Notas" width="20" order="3"/>
         <option id="taskLabelUp" value=""/>
         <option id="taskLabelDown" value=""/>
@@ -41,11 +41,11 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="3" uid="ed5d7543f9934c58882c3897c2392b9c" name="Fundación del proyecto" meeting="false" start="2026-04-11" duration="4" complete="66" priority="2" expand="true">
+        <task id="3" uid="ed5d7543f9934c58882c3897c2392b9c" name="Fundación del proyecto" meeting="false" start="2026-04-11" duration="4" complete="77" priority="2" expand="true">
             <task id="4" uid="e517f348682040f1954cd2880e9b14c6" name="Crear repo con tag v1.0.0." meeting="false" start="2026-04-11" duration="1" complete="100" priority="0" expand="true"/>
             <task id="6" uid="c94a3e6dc948486a81c3a69638b49c2b" name="Plan del Proyecto aprobado" meeting="false" start="2026-04-11" duration="3" complete="100" expand="true"/>
             <task id="5" uid="002f95aeb87b4b7cb29d3e29db9d7c3a" name="Solución .NET 10 + ASP.NET Core" meeting="false" start="2026-04-12" duration="1" complete="100" priority="0" expand="true"/>
-            <task id="57" uid="41ed5c3763bb4bebae76dc932a33b1cb" name="Configuración del motor gráfico" meeting="false" start="2026-04-12" duration="1" complete="0" priority="2" expand="true"/>
+            <task id="57" uid="41ed5c3763bb4bebae76dc932a33b1cb" name="Configuración del motor gráfico" meeting="false" start="2026-04-12" duration="1" complete="100" priority="2" expand="true"/>
             <task id="28" uid="3d175daf5c2f4b2b895176c97080c6a3" name="EF Core configurado con Code-First (sustituyendo el .edmx database-first)" meeting="false" start="2026-04-12" duration="1" complete="100" priority="4" expand="true"/>
             <task id="29" uid="56020729eb3348a8a0bc066461e1936e" name="10 entidades migradas (user, match, card, inventory, etc.)" meeting="false" start="2026-04-13" duration="1" complete="0" expand="true">
                 <depend id="31" type="2" difference="0" hardness="Strong"/>
