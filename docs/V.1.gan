@@ -1,10 +1,21 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-04" view-index="0" gantt-divider-location="377" resource-divider-location="300" version="3.3.3322" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nombre" width="204" order="0"/>
         <field id="tpd4" name="Fecha de inicio" width="77" order="1"/>
         <field id="tpd5" name="Fecha de fin" width="80" order="2"/>
+=======
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-04" view-index="1" gantt-divider-location="438" resource-divider-location="300" version="3.3.3322" locale="es_ES">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="194" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="73" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="82" order="2"/>
+        <field id="tpd12" name="Costo" width="25" order="3"/>
+>>>>>>> a6e1a83 (docs: Progress update)
         <field id="tpd15" name="Notas" width="20" order="3"/>
+        <field id="tpd7" name="Progreso" width="48" order="4"/>
         <option id="taskLabelUp" value=""/>
         <option id="taskLabelDown" value=""/>
         <option id="filter.completedTasks" value="false"/>
@@ -14,8 +25,8 @@
         <timeline><![CDATA[3]]></timeline>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nombre" width="206" order="0"/>
-        <field id="1" name="Función" width="90" order="1"/>
+        <field id="0" name="Nombre" width="202" order="0"/>
+        <field id="1" name="Función" width="94" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -132,7 +143,7 @@
         <resource id="3" name="Luis Donaldo Ortiz Garcia" function="1" contacts="" phone="">
             <rate name="standard" value="2400"/>
         </resource>
-        <resource id="4" name="Diego Ivan  Enriquez Morales" function="2" contacts="" phone="">
+        <resource id="4" name="Diego Ivan  Enriquez Morales" function="4" contacts="" phone="">
             <rate name="standard" value="1600"/>
         </resource>
     </resources>
@@ -204,5 +215,7 @@
     <roles>
         <role id="1" name="Desarrollador"/>
         <role id="2" name="Ingeniero de Pruebas"/>
+        <role id="3" name="Analista de Pruebas"/>
+        <role id="4" name="Tester"/>
     </roles>
 </project>
