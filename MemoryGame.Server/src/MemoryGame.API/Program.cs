@@ -1,9 +1,19 @@
-using Microsoft.EntityFrameworkCore;
+using System.Text;
+using MemoryGame.Application;
 using MemoryGame.Infrastructure;
 using MemoryGame.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var jwtSecret   = builder.Configuration["JWT_SECRET"]
+    ?? throw new InvalidOperationException("JWT_SECRET is not configured.");
+var jwtIssuer   = builder.Configuration["JWT_ISSUER"]   ?? "memorygame-api";
+var jwtAudience = builder.Configuration["JWT_AUDIENCE"] ?? "memorygame-client";
+
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 
@@ -22,6 +32,25 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
     });
 });
+
+// JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey         = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret)),
+            ValidateIssuer           = true,
+            ValidIssuer              = jwtIssuer,
+            ValidateAudience         = true,
+            ValidAudience            = jwtAudience,
+            ValidateLifetime         = true,
+            ClockSkew                = TimeSpan.Zero
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -54,6 +83,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

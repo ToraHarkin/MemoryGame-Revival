@@ -1,6 +1,8 @@
 using System.Security.Claims;
 using MediatR;
 using MemoryGame.Application.Auth.Commands.FinalizeRegistration;
+using MemoryGame.Application.Auth.Commands.Login;
+using MemoryGame.Application.Auth.Commands.Logout;
 using MemoryGame.Application.Auth.Commands.Register;
 using MemoryGame.Application.Auth.Commands.ResendVerification;
 using MemoryGame.Application.Auth.Commands.VerifyRegistration;
@@ -57,6 +59,28 @@ public class AuthController : ControllerBase
     }
 
     /// <summary>
+    /// Authenticates a registered user with username and password.
+    /// </summary>
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginCommand command)
+    {
+        var result = await _mediator.Send(command);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Ends the authenticated user's session by revoking refresh tokens.
+    /// </summary>
+    [Authorize]
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        var command = new LogoutCommand(GetUserId());
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
+    /// <summary>
     /// Resends the verification PIN to the given email address.
     /// </summary>
     [HttpPost("resend-verification")]
@@ -65,4 +89,7 @@ public class AuthController : ControllerBase
         var pin = await _mediator.Send(command);
         return Ok(new { Message = pin });
     }
+
+    private int GetUserId() =>
+        int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 }
