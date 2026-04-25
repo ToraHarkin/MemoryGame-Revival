@@ -2,7 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MemoryGame.Application.Common.Interfaces;
+using MemoryGame.Domain.Users;
 using MemoryGame.Infrastructure.Persistence;
+using MemoryGame.Infrastructure.Repositories;
+using MemoryGame.Infrastructure.Services;
 
 namespace MemoryGame.Infrastructure;
 
@@ -22,6 +25,16 @@ public static class DependencyInjection
 
         // Unit of Work
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Repositories
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IPendingRegistrationRepository, PendingRegistrationRepository>();
+        services.AddScoped<IUserSessionRepository, UserSessionRepository>();
+
+        // Services
+        services.AddScoped<IJwtService, JwtService>();
+        services.AddScoped<IPasswordService, PasswordService>();
+        services.AddScoped<IEmailService, EmailService>();
 
         return services;
     }
