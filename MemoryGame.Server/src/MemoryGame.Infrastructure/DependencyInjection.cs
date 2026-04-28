@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MemoryGame.Application.Common.Interfaces;
 using MemoryGame.Domain.Users;
+using MemoryGame.Domain.Social;
 using MemoryGame.Infrastructure.Persistence;
 using MemoryGame.Infrastructure.Repositories;
 using MemoryGame.Infrastructure.Services;
@@ -30,6 +31,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPendingRegistrationRepository, PendingRegistrationRepository>();
         services.AddScoped<IUserSessionRepository, UserSessionRepository>();
+        services.AddScoped<ISocialRepository, SocialRepository>();
 
         // Services
         services.AddScoped<IJwtService, JwtService>();
