@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-04" view-index="0" gantt-divider-location="377" resource-divider-location="300" version="3.3.3322" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-10" view-index="0" gantt-divider-location="599" resource-divider-location="300" version="3.3.3322" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="204" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="76" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="81" order="2"/>
+        <field id="tpd3" name="Nombre" width="249" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="87" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="78" order="2"/>
         <field id="tpd15" name="Notas" width="20" order="3"/>
+        <field id="tpd7" name="Progreso" width="82" order="3"/>
+        <field id="tpd12" name="Costo" width="87" order="4"/>
         <option id="taskLabelUp" value=""/>
         <option id="taskLabelDown" value=""/>
         <option id="filter.completedTasks" value="false"/>
@@ -53,28 +55,29 @@
             <task id="30" uid="2941ba2a8efb48a195b35243a0392771" name="Pipeline de migraciones de base de datos funcional" meeting="false" start="2026-04-14" duration="1" complete="100" priority="4" expand="true"/>
             <task id="51" uid="2619df8812074d8db682a8a3b5f111ed" name="Infraestructura lista para comenzar a desarrollar" meeting="true" start="2026-04-14" duration="0" complete="100" expand="true"/>
         </task>
-        <task id="7" uid="b1f07dcdf3ff4331934321aabeaa5d31" name="Autenticación y perfil operativos" meeting="false" start="2026-04-14" duration="8" complete="27" expand="true">
+        <task id="7" uid="b1f07dcdf3ff4331934321aabeaa5d31" name="Autenticación y perfil operativos" meeting="false" start="2026-04-14" duration="10" complete="100" expand="true">
             <task id="8" uid="f3a7005971da48b28cfb9976eb51d8c3" name="16 endpoints REST (registro, login, perfil)" meeting="false" start="2026-04-14" duration="4" complete="100" expand="true">
                 <depend id="59" type="2" difference="0" hardness="Strong"/>
                 <task id="31" uid="130050e4204b45b2891e0664d55a3faf" name="Registro completo (con verificación por email)" meeting="false" start="2026-04-14" duration="1" complete="100" expand="true"/>
                 <task id="32" uid="13e6ac5eac4d4921bab1952905ded9d2" name="Login / Logout / Sesiones de invitado" meeting="false" start="2026-04-16" duration="1" complete="100" expand="true"/>
                 <task id="33" uid="ece23cd4e42748aab908e62121863c34" name="Perfil (avatar, username, etc.)" meeting="false" start="2026-04-17" duration="1" complete="100" expand="true"/>
             </task>
-            <task id="9" uid="08ca88d3f32743eb89b1e1ff39305585" name="Manejo de sesiones con tokens (reemplaza userSession de WCF)" meeting="false" start="2026-04-18" duration="1" complete="0" expand="true"/>
-            <task id="58" uid="3e7a2a593257493b816137f2f281a4f0" name="Desarrollo de Interfaz UI (Auth)" meeting="false" start="2026-04-18" duration="2" complete="0" priority="2" expand="true"/>
-            <task id="45" uid="334bcfe6653f47efae46e8f25882e8bd" name="Documentación de API REST (Auth)" meeting="false" start="2026-04-18" duration="1" complete="0" expand="true"/>
-            <task id="46" uid="16037ac35e16401c8f3ce058bfd93356" name="Guía de tokens JWT" meeting="false" start="2026-04-18" duration="1" complete="0" expand="true"/>
-            <task id="10" uid="acb68a6ac8f74a48be545b1dd0d5bce7" name="Pruebas de SessionServiceTest migradas" meeting="false" start="2026-04-19" duration="1" complete="0" expand="true"/>
-            <task id="59" uid="886d9d39dae04f4d9a4fa0e5cbd12a68" name="Integración API REST (Auth)" meeting="false" start="2026-04-18" duration="2" complete="0" priority="2" expand="true"/>
-            <task id="52" uid="6d7be3e4b1e544dca02094d187c1f9d0" name="Los usuarios pueden registrarse, iniciar sesión y gestionar su perfil" color="#8cb6ce" meeting="true" start="2026-04-22" duration="0" complete="0" expand="true"/>
+            <task id="9" uid="08ca88d3f32743eb89b1e1ff39305585" name="Manejo de sesiones con tokens (reemplaza userSession de WCF)" meeting="false" start="2026-04-18" duration="1" complete="100" expand="true"/>
+            <task id="58" uid="3e7a2a593257493b816137f2f281a4f0" name="Desarrollo de Interfaz UI (Auth)" meeting="false" start="2026-04-18" duration="2" complete="100" priority="2" expand="true"/>
+            <task id="10" uid="acb68a6ac8f74a48be545b1dd0d5bce7" name="Pruebas de SessionServiceTest migradas" meeting="false" start="2026-04-19" duration="1" complete="100" expand="true"/>
+            <task id="59" uid="886d9d39dae04f4d9a4fa0e5cbd12a68" name="Integración API REST (Auth)" meeting="false" start="2026-04-18" duration="3" complete="100" priority="2" expand="true">
+                <notes><![CDATA[2.48 h c/dia 3 dias]]></notes>
+            </task>
+            <task id="67" uid="6edd5d4902c345ae959f0e098379168d" name="Ejecución de pruebas unitarias de Dominio" meeting="false" start="2026-04-21" duration="3" complete="100" expand="true"/>
+            <task id="52" uid="6d7be3e4b1e544dca02094d187c1f9d0" name="Los usuarios pueden registrarse, iniciar sesión y gestionar su perfil" color="#8cb6ce" meeting="true" start="2026-04-22" duration="0" complete="100" expand="true"/>
         </task>
-        <task id="11" uid="228ffdd17667462ab596c6db205e2add" name="Social y estadísticas operativos" meeting="false" start="2026-04-23" duration="6" complete="0" expand="true">
-            <task id="12" uid="4175a1abcf474852931bce35bca9adc7" name="12 endpoints REST (amigos, historial)" meeting="false" start="2026-04-23" duration="2" complete="0" expand="true">
+        <task id="11" uid="228ffdd17667462ab596c6db205e2add" name="Social y estadísticas operativos" meeting="false" start="2026-04-23" duration="6" complete="37" expand="true">
+            <task id="12" uid="4175a1abcf474852931bce35bca9adc7" name="12 endpoints REST (amigos, historial)" meeting="false" start="2026-04-23" duration="2" complete="100" expand="true">
                 <depend id="47" type="2" difference="0" hardness="Strong"/>
                 <depend id="61" type="2" difference="0" hardness="Strong"/>
-                <task id="34" uid="f9c04f8ec4d444388dd01d1873294cec" name="Amigos (solicitar, aceptar/rechazar, listar)" meeting="false" start="2026-04-23" duration="1" complete="0" expand="true"/>
-                <task id="35" uid="cb25b5ba212c4408b261cb2b10a93cff" name="Redes sociales: agregar, eliminar" meeting="false" start="2026-04-24" duration="1" complete="0" expand="true"/>
-                <task id="36" uid="3bc26d07fb244e0e8b8a7bdde5dbb3ab" name="Historial de partidas, reportar usuario" meeting="false" start="2026-04-24" duration="1" complete="0" expand="true"/>
+                <task id="34" uid="f9c04f8ec4d444388dd01d1873294cec" name="Amigos (solicitar, aceptar/rechazar, listar)" meeting="false" start="2026-04-23" duration="1" complete="100" expand="true"/>
+                <task id="35" uid="cb25b5ba212c4408b261cb2b10a93cff" name="Redes sociales: agregar, eliminar" meeting="false" start="2026-04-24" duration="1" complete="100" expand="true"/>
+                <task id="36" uid="3bc26d07fb244e0e8b8a7bdde5dbb3ab" name="Historial de partidas, reportar usuario" meeting="false" start="2026-04-24" duration="1" complete="100" expand="true"/>
             </task>
             <task id="60" uid="b5b26e2115c74ca38b969370266d8382" name="Desarrollo de Interfaz UI (Social)" meeting="false" start="2026-04-25" duration="2" complete="0" priority="2" expand="true"/>
             <task id="61" uid="1fd2ed41d1c0446197756c9ef6fb137b" name="Integración API REST (Social)" meeting="false" start="2026-04-25" duration="1" complete="0" priority="2" expand="true"/>
@@ -126,7 +129,7 @@
         <resource id="0" name="Isa Gabriela Torres Garcia" function="1" contacts="" phone="">
             <rate name="standard" value="1600"/>
         </resource>
-        <resource id="2" name="Jorge Irán Pérez Segovia" function="Default:1" contacts="" phone="">
+        <resource id="2" name="Jorge Irán Pérez Segovia" function="4" contacts="" phone="">
             <rate name="standard" value="2000"/>
         </resource>
         <resource id="3" name="Luis Donaldo Ortiz Garcia" function="1" contacts="" phone="">
@@ -151,8 +154,6 @@
         <allocation task-id="38" resource-id="0" function="1" responsible="false" load="20.0"/>
         <allocation task-id="22" resource-id="0" function="1" responsible="false" load="20.0"/>
         <allocation task-id="66" resource-id="0" function="1" responsible="true" load="30.0"/>
-        <allocation task-id="45" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
-        <allocation task-id="46" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
         <allocation task-id="48" resource-id="2" function="Default:1" responsible="true" load="40.0"/>
         <allocation task-id="50" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
         <allocation task-id="43" resource-id="2" function="Default:1" responsible="true" load="35.0"/>
@@ -195,6 +196,7 @@
         <allocation task-id="22" resource-id="4" function="2" responsible="false" load="20.0"/>
         <allocation task-id="24" resource-id="4" function="2" responsible="true" load="35.0"/>
         <allocation task-id="44" resource-id="4" function="2" responsible="false" load="15.0"/>
+        <allocation task-id="67" resource-id="4" function="3" responsible="true" load="30.0"/>
     </allocations>
     <vacations>
         <vacation start="2026-04-06" end="2026-04-11" resourceid="3"/>
@@ -205,5 +207,6 @@
         <role id="1" name="Desarrollador"/>
         <role id="2" name="Ingeniero de Pruebas"/>
         <role id="3" name="Tester"/>
+        <role id="4" name="Documentador"/>
     </roles>
 </project>
