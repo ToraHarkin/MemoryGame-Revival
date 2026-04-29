@@ -1,4 +1,5 @@
 using System.Text;
+using MemoryGame.API.Hubs;
 using MemoryGame.Application;
 using MemoryGame.Infrastructure;
 using MemoryGame.Infrastructure.Persistence;
@@ -29,7 +30,7 @@ builder.Services.AddCors(options =>
         if (allowedOrigins.Length == 0 || allowedOrigins.Contains("*"))
             policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
         else
-            policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
+            policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
     });
 });
 
@@ -48,9 +49,25 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime         = true,
             ClockSkew                = TimeSpan.Zero
         };
+
+        // Allow the JWT to be passed as a query string parameter for SignalR connections
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hub"))
+                    context.Token = accessToken;
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddAuthorization();
+
+// SignalR
+builder.Services.AddSignalR();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -86,5 +103,6 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<GameLobbyHub>("/hub/lobby");
 
 app.Run();

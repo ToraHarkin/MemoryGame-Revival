@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MemoryGame.Application.Common.Interfaces;
 using MemoryGame.Domain.Users;
 using MemoryGame.Domain.Social;
+using MemoryGame.Application.Lobbies.Interfaces;
+using MemoryGame.Infrastructure.Lobbies;
 using MemoryGame.Infrastructure.Persistence;
 using MemoryGame.Infrastructure.Repositories;
 using MemoryGame.Infrastructure.Services;
@@ -32,6 +34,10 @@ public static class DependencyInjection
         services.AddScoped<IPendingRegistrationRepository, PendingRegistrationRepository>();
         services.AddScoped<IUserSessionRepository, UserSessionRepository>();
         services.AddScoped<ISocialRepository, SocialRepository>();
+
+        // Lobby (singletons — in-memory state shared across requests)
+        services.AddSingleton<ILobbyManager, LobbyManager>();
+        services.AddSingleton<IPresenceTracker, PresenceTracker>();
 
         // Services
         services.AddScoped<IJwtService, JwtService>();
