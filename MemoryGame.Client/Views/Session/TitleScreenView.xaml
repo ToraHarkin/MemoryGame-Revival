@@ -1,0 +1,51 @@
+<UserControl x:Class="MemoryGame.Client.Views.Session.TitleScreenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:MemoryGame.Client.Localization"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="1280" d:DesignHeight="720">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="{DynamicResource GlobalBackgroundSource}"
+                        Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Canvas x:Name="PetalCanvas" IsHitTestVisible="False"/>
+
+        <Rectangle Width="200" Height="200"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0,-10,0,0">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=LogoImage}"
+                            Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="215"
+                    Margin="0,80,0,0">
+
+            <Button Height="40"
+                    Margin="0,0,0,16"
+                    Style="{DynamicResource PastelButton}"
+                    Command="{Binding GoToLoginCommand}"
+                    Content="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=[Global_Button_Login]}"/>
+
+            <Button Height="40"
+                    Margin="0,0,0,16"
+                    Style="{DynamicResource PastelButton}"
+                    Command="{Binding GoToRegisterCommand}"
+                    Content="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=[Global_Button_Register]}"/>
+
+            <Button Height="34"
+                    Command="{Binding GoToGuestLoginCommand}"
+                    Content="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=[Global_Button_Guest]}"
+                    Style="{DynamicResource LinkButton}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

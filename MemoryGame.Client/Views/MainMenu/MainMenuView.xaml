@@ -1,0 +1,125 @@
+<UserControl x:Class="MemoryGame.Client.Views.MainMenu.MainMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:MemoryGame.Client.Localization"
+             xmlns:controls="clr-namespace:MemoryGame.Client.Views.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="1280" d:DesignHeight="720">
+
+    <Grid>
+        <!-- Static background image (with everything including background) -->
+        <Image Source="{DynamicResource GlobalMainBackgroundSource}"
+               Stretch="UniformToFill"/>
+
+        <!-- Petal canvas — falls in front of background, behind the character -->
+        <Canvas x:Name="PetalCanvas" IsHitTestVisible="False"/>
+
+        <!-- Foreground cutout character image that animates when hovered over -->
+
+        <StackPanel HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Width="500">
+
+            <Image Source="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=LogoImage}"
+                   Height="280"
+                   HorizontalAlignment="Center"
+                   Stretch="Uniform"
+                   Margin="0,0,0,20"/>
+
+            <Border Margin="60,0,60,0"
+                    CornerRadius="{DynamicResource CardCornerRadius}"
+                    Background="{DynamicResource CardBackground}"
+                    Padding="32,28,32,24">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="4" BlurRadius="20"
+                                      Color="#C84747" Opacity="0.12"/>
+                </Border.Effect>
+
+                <StackPanel>
+
+                    <TextBlock Text="{Binding WelcomeMessage}"
+                               Style="{DynamicResource PastelTextBlock}"
+                               FontSize="17" FontWeight="SemiBold"
+                               Foreground="{DynamicResource PastelPrimary}"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               Margin="0,0,0,20"
+                               TextWrapping="Wrap"/>
+
+                    <Button Height="48" Margin="0,0,0,12"
+                            Style="{DynamicResource PastelButton}"
+                            Content="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=[MainMenu_Button_Singleplayer]}"/>
+
+                    <Button Height="48" Margin="0,0,0,12"
+                            Style="{DynamicResource PastelButton}"
+                            Command="{Binding GoToMultiplayerCommand}"
+                            Content="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=[MainMenu_Button_Multiplayer]}"/>
+
+                    <Button Height="48" Margin="0,0,0,20"
+                            Style="{DynamicResource PastelButton}"
+                            Command="{Binding GoToMoreCommand}"
+                            Content="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=[MainMenu_Button_More]}"/>
+
+                    <Rectangle Style="{DynamicResource SectionDivider}" Margin="20,0,20,4"/>
+
+                    <Button HorizontalAlignment="Center"
+                            Command="{Binding LogoutCommand}"
+                            Content="{Binding Source={x:Static loc:LocalizationManager.Instance}, Path=[Global_Button_Logout]}"
+                            Style="{DynamicResource LinkButton}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" RenderTransformOrigin="1,1">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="{Binding ImageScale}" ScaleY="{Binding ImageScale}"/>
+            </Grid.RenderTransform>
+            <controls:AlphaHitTestImage Source="{Binding CurrentMoodImage}" 
+                   Stretch="Uniform" 
+                   Cursor="Hand"
+                   ToolTip="Story Mode"
+                   RenderTransformOrigin="0.5,0.5">
+                <controls:AlphaHitTestImage.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding GoToStoryModeCommand}" />
+                </controls:AlphaHitTestImage.InputBindings>
+                <controls:AlphaHitTestImage.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </controls:AlphaHitTestImage.RenderTransform>
+                <controls:AlphaHitTestImage.Style>
+                    <Style TargetType="{x:Type controls:AlphaHitTestImage}">
+                        <Style.Triggers>
+                            <!-- When the mouse is inside the MainMenuView, zoom in -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.05" Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuadraticEase EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.05" Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuadraticEase EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.0" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:AlphaHitTestImage.Style>
+            </controls:AlphaHitTestImage>
+        </Grid>
+    </Grid>
+</UserControl>
