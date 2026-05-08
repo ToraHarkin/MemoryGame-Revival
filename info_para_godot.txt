@@ -1,0 +1,149 @@
+========================================================
+  MEMORY GAME - INFO BACKEND PARA GODOT (FASE 2)
+========================================================
+
+URL BASE
+--------
+  http://localhost:5000
+
+  (Para que funcione necesitas que el backend este corriendo.
+   Si lo levantas con Docker: docker compose up --build
+   desde la carpeta MemoryGame-Revival/)
+
+SWAGGER
+-------
+  http://localhost:5000/swagger
+
+  Ahi puedes ver y probar todos los endpoints directamente
+  desde el navegador.
+
+CORS
+----
+  Si, esta habilitado con AllowAnyOrigin.
+  Godot no tendra problemas de bloqueo.
+
+
+========================================================
+  ENDPOINTS DISPONIBLES (Fase 2 - Auth)
+========================================================
+
+IMPORTANTE: El endpoint de Login todavia NO existe en el
+backend. Solo existe el flujo de Registro (que es de 3 pasos).
+Coordina con el backend para saber cuando estara listo el Login.
+
+
+------------------------------------------------------------
+FLUJO DE REGISTRO (3 pasos)
+------------------------------------------------------------
+
+El registro no es directo: primero se manda un PIN al correo,
+se verifica, y luego se finaliza creando la cuenta.
+
+PASO 1 - Iniciar registro (manda PIN al email)
+  POST http://localhost:5000/api/auth/register
+  Content-Type: application/json
+
+  Body:
+  {
+    "Username": "string",
+    "Email": "string",
+    "Password": "string"
+  }
+
+  Respuesta exitosa (200):
+  {
+    "message": "123456"    <- el PIN (en dev te lo regresa directo)
+  }
+
+  Reglas de validacion:
+    - Username: 3-30 chars, solo letras, numeros, _ y -
+    - Email: maximo 50 chars, formato valido (x@x.x)
+    - Password: minimo 8 chars, maximo 100
+
+
+PASO 2 - Verificar PIN (opcional, para validar antes de continuar)
+  POST http://localhost:5000/api/auth/verify-registration
+  Content-Type: application/json
+
+  Body:
+  {
+    "Email": "string",
+    "Pin": "string"
+  }
+
+  Respuesta exitosa (200):
+  {
+    "valid": true
+  }
+
+  Reglas:
+    - Pin: exactamente 6 digitos numericos (ej. "048321")
+
+
+PASO 2b - Reenviar PIN (si el usuario no recibio el correo)
+  POST http://localhost:5000/api/auth/resend-verification
+  Content-Type: application/json
+
+  Body:
+  {
+    "Email": "string"
+  }
+
+  Respuesta exitosa (200):
+  {
+    "message": "654321"    <- nuevo PIN
+  }
+
+
+PASO 3 - Finalizar registro (crea la cuenta y devuelve tokens)
+  POST http://localhost:5000/api/auth/finalize-registration
+  Content-Type: application/json
+
+  Body:
+  {
+    "Email": "string",
+    "Pin": "string"
+  }
+
+  Respuesta exitosa (200):
+  {
+    "accessToken": "eyJ...",
+    "refreshToken": "eyJ...",
+    "user": {
+      "id": 1,
+      "username": "string",
+      "email": "string",
+      "isGuest": false,
+      "verifiedEmail": true
+    }
+  }
+
+
+------------------------------------------------------------
+ERRORES COMUNES
+------------------------------------------------------------
+
+Los errores regresan asi:
+  HTTP 400 / 422 / 409 segun el caso
+  {
+    "error": "Descripcion del error"
+  }
+
+Casos posibles en registro:
+  - Email ya registrado
+  - Username ya tomado
+  - PIN invalido o expirado (expira en 15 minutos)
+  - Campos que no pasan validacion
+
+
+========================================================
+  NOTAS TECNICAS
+========================================================
+
+- Todos los campos del JSON son case-sensitive tal como
+  aparecen arriba (PascalCase: "Username", "Email", etc.)
+- El PIN tiene vigencia de 15 minutos desde que se genera
+- En el Swagger puedes ver el schema exacto de cada endpoint
+- El Login esta pendiente de implementacion en el backend
+
+========================================================
