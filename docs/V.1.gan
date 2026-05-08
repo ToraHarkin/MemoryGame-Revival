@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-26" view-index="0" gantt-divider-location="545" resource-divider-location="300" version="3.3.3322" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-04-25" view-index="0" gantt-divider-location="516" resource-divider-location="300" version="3.3.3322" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="230" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="81" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="73" order="2"/>
+        <field id="tpd3" name="Nombre" width="216" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="76" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="69" order="2"/>
         <field id="tpd15" name="Notas" width="20" order="3"/>
-        <field id="tpd7" name="Progreso" width="64" order="3"/>
-        <field id="tpd12" name="Costo" width="81" order="4"/>
+        <field id="tpd7" name="Progreso" width="59" order="3"/>
+        <field id="tpd12" name="Costo" width="80" order="4"/>
         <option id="taskLabelUp" value=""/>
         <option id="taskLabelDown" value=""/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
         <option id="filter.inProgressTodayTasks" value="false"/>
-        <timeline><![CDATA[3,62,60,61,66]]></timeline>
+        <timeline><![CDATA[62,3,61,60,66]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Nombre" width="206" order="0"/>
@@ -90,7 +90,6 @@
             <task id="53" uid="d15d4e98799b4d5898faca70b310fd5f" name="El sistema social está completo" meeting="true" start="2026-04-28" duration="0" complete="100" expand="true"/>
         </task>
         <task id="15" uid="fe79c55895064a0b83b58bfa387a999c" name="Lobby en tiempo real operativo" meeting="false" start="2026-04-29" duration="8" complete="100" priority="2" expand="true">
-            <depend id="64" type="2" difference="0" hardness="Strong"/>
             <task id="16" uid="2f7df4d8e28b440c8d3ce3a327cf151b" name="Hub SignalR implementado (reemplaza IGameLobbyCallback)" meeting="false" start="2026-04-29" duration="2" complete="100" priority="2" expand="true">
                 <depend id="21" type="2" difference="0" hardness="Strong"/>
                 <depend id="62" type="2" difference="0" hardness="Strong"/>
@@ -111,22 +110,16 @@
             <task id="68" uid="b7e33cfa278642b59c89314dcc373b5c" name="Unit Test Creation for Server Application Project IV" meeting="false" start="2026-05-06" duration="1" complete="100" expand="true"/>
             <task id="54" uid="867165d2902a49a9ae3288e2d52c7454" name="Callbacks WCF reemplazados con SignalR" meeting="true" start="2026-05-06" duration="0" complete="100" expand="true"/>
         </task>
-        <task id="19" uid="e84f003c0d5b4cd0b9e2059a252cf36a" name="Lógica de juego operativa" meeting="false" start="2026-05-01" duration="16" complete="42" expand="true">
-            <depend id="24" type="2" difference="0" hardness="Strong"/>
+        <task id="19" uid="e84f003c0d5b4cd0b9e2059a252cf36a" name="Lógica de juego operativa" meeting="false" start="2026-05-01" duration="15" complete="54" expand="true">
             <task id="21" uid="3e3641a774914fb1b1b2db59cf83a3e9" name="Desarrollo de Interfaz UI (Tablero)" meeting="false" start="2026-05-01" duration="2" complete="100" priority="4" expand="true"/>
             <task id="20" uid="0dd0b8114ab64ed1a9c59fcfbd7739f8" name="Flujo de juego completo vía SignalR" meeting="false" start="2026-05-07" duration="4" complete="100" expand="true">
                 <task id="40" uid="51ada2e59eea475e9002675b0188fc6c" name="StartGame, FlipCard, turno, puntuación, fin de partida" meeting="false" start="2026-05-07" duration="2" complete="100" priority="4" expand="true"/>
                 <task id="41" uid="7ba0de7f5e2d4d019a63c6dfa4eac235" name="ShowCard, HideCards, CardFlipped, SetCardsAsMatched, UpdateScore" meeting="false" start="2026-05-09" duration="2" complete="100" priority="4" expand="true"/>
             </task>
             <task id="63" uid="a7e25541650f44518b156c484cdcb7b0" name="Animación y Lógica de Juego (SignalR)" meeting="false" start="2026-05-11" duration="5" complete="0" expand="true"/>
-            <task id="42" uid="b2acd7d1f50a4911b632240bb3091c6b" name="Pruebas de GameServiceTest migradas" meeting="false" start="2026-05-15" duration="1" complete="0" expand="true"/>
-            <task id="49" uid="85da102c6ee04984b5e2e97365a62ecc" name="Documentación del flujo de juego y estados del cliente" meeting="false" start="2026-05-15" duration="2" complete="0" expand="true"/>
             <task id="55" uid="d232fffc2e484b27ac828339f93b5a8f" name="El juego funciona end-to-end" meeting="true" start="2026-05-16" duration="0" complete="0" expand="true"/>
         </task>
-        <task id="23" uid="6bef0a1442e5422099ee3f4fd4d426cf" name="Validación y cierre" meeting="false" start="2026-05-07" duration="16" complete="0" expand="true">
-            <task id="64" uid="e2231c810d4e46a6b5f8e44a39d7e930" name="Documentación de la Arquitectura del Cliente" meeting="false" start="2026-05-07" duration="1" complete="0" expand="true"/>
-            <task id="22" uid="ac7f2ddd6be4407bb985ec9fe7064a44" name="Todas las pruebas pasando (32 clases de test)" meeting="false" start="2026-05-17" duration="1" complete="0" expand="true"/>
-            <task id="24" uid="c5e03110721244919eb7dc5d3556b4a2" name="Prueba de regresión funcional completa" meeting="false" start="2026-05-17" duration="1" complete="0" expand="true"/>
+        <task id="23" uid="6bef0a1442e5422099ee3f4fd4d426cf" name="Validación y cierre" meeting="false" start="2026-05-18" duration="5" complete="0" expand="true">
             <task id="25" uid="4d8844ff36b1431c9a1e79a7276e4eff" name="Secrets/configuración segura (email, cadena de conexión fuera de config)" meeting="false" start="2026-05-18" duration="1" complete="0" expand="true"/>
             <task id="50" uid="f23621cfb9454e068c638747783c5cab" name="Manual de despliegue en infraestructura Linux" meeting="false" start="2026-05-19" duration="2" complete="0" expand="true"/>
             <task id="43" uid="253991edbfe7444584f1cd6f5f9b72ca" name="Documentación técnica final (gestores)" meeting="false" start="2026-05-21" duration="1" complete="0" expand="true"/>
@@ -158,10 +151,8 @@
         <allocation task-id="62" resource-id="0" function="Default:1" responsible="true" load="25.0"/>
         <allocation task-id="21" resource-id="0" function="1" responsible="true" load="25.0"/>
         <allocation task-id="63" resource-id="0" function="1" responsible="true" load="25.0"/>
-        <allocation task-id="64" resource-id="0" function="Default:1" responsible="true" load="35.0"/>
         <allocation task-id="59" resource-id="0" function="1" responsible="true" load="35.0"/>
         <allocation task-id="38" resource-id="0" function="1" responsible="false" load="20.0"/>
-        <allocation task-id="22" resource-id="0" function="1" responsible="false" load="20.0"/>
         <allocation task-id="66" resource-id="0" function="1" responsible="true" load="30.0"/>
         <allocation task-id="48" resource-id="2" function="Default:1" responsible="true" load="40.0"/>
         <allocation task-id="50" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
@@ -169,8 +160,6 @@
         <allocation task-id="44" resource-id="2" function="Default:1" responsible="true" load="15.0"/>
         <allocation task-id="53" resource-id="2" function="Default:1" responsible="true" load="0.0"/>
         <allocation task-id="47" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
-        <allocation task-id="49" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
-        <allocation task-id="22" resource-id="2" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="6" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
         <allocation task-id="5" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="20.0"/>
         <allocation task-id="8" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="0.0"/>
@@ -195,15 +184,11 @@
         <allocation task-id="41" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="25.0"/>
         <allocation task-id="44" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="15.0"/>
         <allocation task-id="53" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="0.0"/>
-        <allocation task-id="22" resource-id="3" function="1" responsible="false" load="20.0"/>
         <allocation task-id="25" resource-id="3" function="1" responsible="true" load="25.0"/>
         <allocation task-id="4" resource-id="3" function="1" responsible="true" load="5.0"/>
         <allocation task-id="10" resource-id="4" function="2" responsible="true" load="30.0"/>
         <allocation task-id="13" resource-id="4" function="2" responsible="true" load="30.0"/>
         <allocation task-id="39" resource-id="4" function="2" responsible="true" load="25.0"/>
-        <allocation task-id="42" resource-id="4" function="2" responsible="true" load="35.0"/>
-        <allocation task-id="22" resource-id="4" function="2" responsible="false" load="20.0"/>
-        <allocation task-id="24" resource-id="4" function="2" responsible="true" load="35.0"/>
         <allocation task-id="44" resource-id="4" function="2" responsible="false" load="15.0"/>
         <allocation task-id="67" resource-id="4" function="3" responsible="true" load="30.0"/>
         <allocation task-id="68" resource-id="4" function="3" responsible="true" load="20.0"/>
