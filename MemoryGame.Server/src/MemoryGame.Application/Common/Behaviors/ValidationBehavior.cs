@@ -8,11 +8,16 @@ namespace MemoryGame.Application.Common.Behaviors;
 /// before the request reaches its handler. Collects all validation failures and
 /// throws a <see cref="ValidationException"/> if any rules are violated.
 /// </summary>
+/// <typeparam name="TRequest">The MediatR request type.</typeparam>
+/// <typeparam name="TResponse">The response type.</typeparam>
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
+    /// <summary>
+    /// Initializes the behavior with all registered validators for the request type.
+    /// </summary>
     public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
     {
         _validators = validators;
