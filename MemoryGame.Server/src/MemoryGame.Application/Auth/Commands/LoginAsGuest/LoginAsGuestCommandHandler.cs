@@ -1,19 +1,17 @@
 using MediatR;
 using MemoryGame.Application.Auth.DTOs;
 using MemoryGame.Application.Common.Interfaces;
-using MemoryGame.Domain.Common;
 using MemoryGame.Domain.Users;
 
-namespace MemoryGame.Application.Auth.Commands.Login;
+namespace MemoryGame.Application.Auth.Commands.LoginAsGuest;
 
 /// <summary>
-/// Handles <see cref="LoginCommand"/>: authenticates the user by verifying credentials
-/// and account state, then persists the session and issues tokens.
+/// Handles <see cref="LoginAsGuestCommand"/>: creates a guest account,
+/// persists the session, and issues access tokens.
 /// </summary>
-public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponse>
+public class LoginAsGuestCommandHandler : IRequestHandler<LoginAsGuestCommand, AuthResponse>
 {
     private readonly IUserRepository _userRepository;
-    private readonly IPasswordService _passwordService;
     private readonly IJwtService _jwtService;
     private readonly IUserSessionRepository _userSessionRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -21,34 +19,38 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponse>
     /// <summary>
     /// Initializes the handler with its dependencies.
     /// </summary>
-    public LoginCommandHandler(
+    public LoginAsGuestCommandHandler(
         IUserRepository userRepository,
-        IPasswordService passwordService,
         IJwtService jwtService,
         IUserSessionRepository userSessionRepository,
         IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
-        _passwordService = passwordService;
         _jwtService = jwtService;
         _userSessionRepository = userSessionRepository;
         _unitOfWork = unitOfWork;
     }
 
     /// <inheritdoc/>
-    public async Task<AuthResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<AuthResponse> Handle(LoginAsGuestCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByUsernameAsync(request.Username)
-            ?? throw new DomainException(DomainErrors.Auth.InvalidCredentials);
+        var existingUser = await _userRepository.GetByUsernameAsync(request.GuestUsername);
+        User user;
 
-        if (user.IsGuest)
-            throw new DomainException(DomainErrors.Auth.GuestCannotLogin);
+        if (existingUser != null)
+        {
+            if (!existingUser.IsGuest)
+                throw new MemoryGame.Domain.Common.DomainException(MemoryGame.Domain.Common.DomainErrors.Auth.UsernameAlreadyTaken);
 
-        if (!_passwordService.Verify(request.Password, user.PasswordHash))
-            throw new DomainException(DomainErrors.Auth.InvalidCredentials);
+            user = existingUser;
+        }
+        else
+        {
+            user = User.CreateGuest(request.GuestUsername);
+            await _userRepository.AddAsync(user);
+        }
 
-        if (!user.VerifiedEmail)
-            throw new DomainException(DomainErrors.Auth.EmailNotVerified);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         var accessToken = _jwtService.GenerateAccessToken(user);
         var refreshToken = _jwtService.GenerateRefreshToken();

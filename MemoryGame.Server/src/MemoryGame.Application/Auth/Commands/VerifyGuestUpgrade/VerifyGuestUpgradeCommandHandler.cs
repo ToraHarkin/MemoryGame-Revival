@@ -5,56 +5,53 @@ using MemoryGame.Domain.Common;
 using MemoryGame.Domain.Users;
 using MemoryGame.Domain.Users.ValueObjects;
 
-namespace MemoryGame.Application.Auth.Commands.FinalizeRegistration;
+namespace MemoryGame.Application.Auth.Commands.VerifyGuestUpgrade;
 
 /// <summary>
-/// Handles <see cref="FinalizeRegistrationCommand"/>: validates the PIN, creates the user
-/// with a verified email, removes the pending registration, and issues session tokens.
+/// Handles <see cref="VerifyGuestUpgradeCommand"/>: validates the PIN, promotes the guest
+/// account to a registered account, removes the pending registration, and issues new tokens.
 /// </summary>
-public class FinalizeRegistrationCommandHandler : IRequestHandler<FinalizeRegistrationCommand, AuthResponse>
+public class VerifyGuestUpgradeCommandHandler : IRequestHandler<VerifyGuestUpgradeCommand, AuthResponse>
 {
     private readonly IUserRepository _userRepository;
-    private readonly IPendingRegistrationRepository _pendingRegistrationRepository;
-    private readonly IUserSessionRepository _userSessionRepository;
     private readonly IJwtService _jwtService;
+    private readonly IPendingRegistrationRepository _pendingRegistrationRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     /// <summary>
     /// Initializes the handler with its dependencies.
     /// </summary>
-    public FinalizeRegistrationCommandHandler(
+    public VerifyGuestUpgradeCommandHandler(
         IUserRepository userRepository,
-        IPendingRegistrationRepository pendingRegistrationRepository,
-        IUserSessionRepository userSessionRepository,
         IJwtService jwtService,
+        IPendingRegistrationRepository pendingRegistrationRepository,
         IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
-        _pendingRegistrationRepository = pendingRegistrationRepository;
-        _userSessionRepository = userSessionRepository;
         _jwtService = jwtService;
+        _pendingRegistrationRepository = pendingRegistrationRepository;
         _unitOfWork = unitOfWork;
     }
 
     /// <inheritdoc/>
-    public async Task<AuthResponse> Handle(FinalizeRegistrationCommand request, CancellationToken cancellationToken)
+    public async Task<AuthResponse> Handle(VerifyGuestUpgradeCommand request, CancellationToken cancellationToken)
     {
-        var email = Email.Create(request.Email);
+        var user = await _userRepository.GetByIdAsync(request.UserId)
+            ?? throw new DomainException(DomainErrors.User.NotFound);
 
+        if (!user.IsGuest)
+            throw new DomainException(DomainErrors.User.NotAGuest);
+
+        var email = Email.Create(request.Email);
         var pending = await _pendingRegistrationRepository.GetByEmailAsync(email)
             ?? throw new DomainException(DomainErrors.Auth.PinInvalid);
 
         if (!pending.ValidatePin(request.Pin))
             throw new DomainException(DomainErrors.Auth.PinInvalid);
 
-        var user = User.CreateRegistered(
-            username: pending.Username ?? email.Value.Split('@')[0],
-            email: request.Email,
-            passwordHash: pending.HashedPassword!);
-
+        user.PromoteFromGuest(email.Value, pending.HashedPassword!);
         user.VerifyEmail();
 
-        await _userRepository.AddAsync(user);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         _pendingRegistrationRepository.Remove(pending);
@@ -62,10 +59,6 @@ public class FinalizeRegistrationCommandHandler : IRequestHandler<FinalizeRegist
 
         var accessToken = _jwtService.GenerateAccessToken(user);
         var refreshToken = _jwtService.GenerateRefreshToken();
-
-        var session = UserSession.Create(refreshToken, user.Id, TimeSpan.FromDays(7));
-        await _userSessionRepository.AddAsync(session);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return new AuthResponse(
             AccessToken: accessToken,

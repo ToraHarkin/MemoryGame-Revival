@@ -8,6 +8,9 @@ namespace MemoryGame.Application.Auth.Commands.Logout;
 /// </summary>
 public class LogoutCommandValidator : AbstractValidator<LogoutCommand>
 {
+    /// <summary>
+    /// Initializes validation rules for logout.
+    /// </summary>
     public LogoutCommandValidator()
     {
         RuleFor(x => x.UserId).ValidId();

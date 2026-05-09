@@ -8,6 +8,9 @@ namespace MemoryGame.Application.Auth.Commands.Login;
 /// </summary>
 public class LoginCommandValidator : AbstractValidator<LoginCommand>
 {
+    /// <summary>
+    /// Initializes validation rules for user login.
+    /// </summary>
     public LoginCommandValidator()
     {
         RuleFor(x => x.Username)
