@@ -7,9 +7,8 @@ namespace MemoryGame.Tests;
 
 public class PenaltyTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_PenaltyTypeIsValid_ReturnNewPenalty()
     {
@@ -74,9 +73,7 @@ public class PenaltyTests
         Assert.Equal(userId, penalty.UserId);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_DurationIsBeforePresentTime_ThrowDomainException()
     {
@@ -126,9 +123,8 @@ public class PenaltyTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // IsActive - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method IsActive()
+    // Attribute validation tests.
     [Fact]
     public void IsActive_PenaltyTypeIsPermanentBan_ReturnsTrue()
     {

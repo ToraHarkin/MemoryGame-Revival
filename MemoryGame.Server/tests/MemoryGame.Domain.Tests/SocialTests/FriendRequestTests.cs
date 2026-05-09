@@ -7,9 +7,8 @@ namespace MemoryGame.Tests;
 
 public class FriendRequestTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_SenderIdIsValid_ReturnNewFriendRequest()
     {
@@ -38,9 +37,7 @@ public class FriendRequestTests
         Assert.Equal(receiverId, friendRequest.ReceiverId);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_IdsAreTheSame_ThrowDomainException()
     {
@@ -84,9 +81,8 @@ public class FriendRequestTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // Accept - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Accept()
+    // Attribute validation tests.
     [Fact]
     public void Accept_RequestStatusIsPending_SetRequestStatusAsAccepted()
     {
@@ -103,9 +99,7 @@ public class FriendRequestTests
         Assert.Equal(FriendRequestStatus.Accepted, friendRequest.Status);
     }
 
-    // -----------------------------------------------------------------------
-    // Accept - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Accept_RequestStatusIsNotPending_ThrowDomainException()
     {
@@ -125,9 +119,8 @@ public class FriendRequestTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // Reject - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Reject()
+    // Attribute validation tests.
     [Fact]
     public void Reject_RequestStatusIsPending_SetRequestStatusAsRejected()
     {
@@ -144,9 +137,7 @@ public class FriendRequestTests
         Assert.Equal(FriendRequestStatus.Rejected, friendRequest.Status);
     }
 
-    // -----------------------------------------------------------------------
-    // Reject - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Reject_RequestStatusIsNotPending_ThrowDomainException()
     {

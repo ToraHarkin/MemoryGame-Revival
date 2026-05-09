@@ -1,10 +1,9 @@
 using System.Text;
 using MemoryGame.API.Hubs;
+using MemoryGame.API.Middleware;
 using MemoryGame.Application;
 using MemoryGame.Infrastructure;
-using MemoryGame.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,27 +13,14 @@ var jwtSecret   = builder.Configuration["JWT_SECRET"]
 var jwtIssuer   = builder.Configuration["JWT_ISSUER"]   ?? "memorygame-api";
 var jwtAudience = builder.Configuration["JWT_AUDIENCE"] ?? "memorygame-client";
 
+// Application and infrastructure services
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// Controllers
 builder.Services.AddControllers();
 
-// CORS
-var allowedOrigins = builder.Configuration
-    .GetSection("Cors:AllowedOrigins")
-    .Get<string[]>() ?? [];
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        if (allowedOrigins.Length == 0 || allowedOrigins.Contains("*"))
-            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-        else
-            policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-    });
-});
-
-// JWT Authentication
+// Authentication — JWT Bearer
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -50,7 +36,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew                = TimeSpan.Zero
         };
 
-        // Allow the JWT to be passed as a query string parameter for SignalR connections
         options.Events = new JwtBearerEvents
         {
             OnMessageReceived = context =>
@@ -66,6 +51,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+// CORS
+var allowedOrigins = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>() ?? [];
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        if (allowedOrigins.Contains("*"))
+            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        else
+            policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+    });
+});
+
 // SignalR
 builder.Services.AddSignalR();
 
@@ -75,22 +76,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Apply migrations automatically on startup
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<MemoryGameDbContext>();
-        if (context.Database.GetPendingMigrations().Any())
-            context.Database.Migrate();
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while migrating the database.");
-    }
-}
+// Middleware pipeline
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

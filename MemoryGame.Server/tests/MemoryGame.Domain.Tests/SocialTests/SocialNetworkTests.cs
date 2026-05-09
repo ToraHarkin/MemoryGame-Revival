@@ -6,9 +6,8 @@ namespace MemoryGame.Tests;
 
 public class SocialNetworkTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_UserIdIsValid_ReturnNewSocialNetwork()
     {
@@ -37,9 +36,7 @@ public class SocialNetworkTests
         Assert.Equal(account, socialNetwork.Account);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_AccountNameIsNull_ThrowDomainException()
     {
@@ -82,9 +79,8 @@ public class SocialNetworkTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // UpdateAccount - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method UpdateAccount()
+    // Attribute validation tests.
     [Fact]
     public void UpdateAccount_NewAccountNameIsValid_UpdateAccountName()
     {
@@ -102,9 +98,7 @@ public class SocialNetworkTests
         Assert.Equal(newAccountName, socialNetwork.Account);
     }
 
-    // -----------------------------------------------------------------------
-    // UpdateAccount - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void UpdateAccount_NewAccountNameIsNull_ThrowDomainException()
     {

@@ -6,9 +6,7 @@ namespace MemoryGame.Tests;
 
 public class CardTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Attribute validation tests.
     [Fact]
     public void Create_NameIsValid_ReturnsNewCard()
     {
@@ -68,9 +66,7 @@ public class CardTests
         Assert.Null(card.Description);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_NameIsNull_ThrowsDomainException()
     {

@@ -7,9 +7,8 @@ namespace MemoryGame.Tests;
 
 public class UserTests
 {
-    // -----------------------------------------------------------------------
-    // CreateRegistered (and indirectly, ValidateUsername) - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method CreateRegistered() (and indirectly, ValidateUsername())
+    // Attribute validation tests.
     // TODO: Find a way to implement unit tests for private methods.
     [Fact]
     public void CreateRegistered_UsernameIsValid_ReturnNewUser()
@@ -56,9 +55,7 @@ public class UserTests
         Assert.Equal(hashedPassword, user.PasswordHash);
     }
 
-    // -----------------------------------------------------------------------
-    // CreateRegistered (and indirectly, ValidateUsername) - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void CreateRegistered_UsernameIsNull_ThrowDomainException()
     {
@@ -104,9 +101,8 @@ public class UserTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // CreateGuest - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method CreateGuest()
+    // Attribute validation tests.
     [Fact]
     public void CreateGuest_UsernameIsValid_ReturnNewUser()
     {
@@ -121,9 +117,8 @@ public class UserTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // ChangeUsername - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method ChangeUsername()
+    // Attribute validation tests.
     [Fact]
     public void ChangeUsername_UsernameIsValid_UpdateUsername()
     {
@@ -144,9 +139,8 @@ public class UserTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // UpdatePersonalInfo - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method UpdatePersonalInfo()
+    // Attribute validation tests.
     [Fact]
     public void UpdatePersonalInfo_NameIsValid_UpdatePersonalInfo()
     {
@@ -187,9 +181,7 @@ public class UserTests
         Assert.Equal(lastName, user.LastName);
     }
 
-    // -----------------------------------------------------------------------
-    // UpdatePersonalInfo - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void UpdatePersonalInfo_NameIsNull_ThrowDomainException()
     {
@@ -309,9 +301,8 @@ public class UserTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // ChangePassword - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method ChangePassword()
+    // Attribute validation tests.
     [Fact]
     public void ChangePassword_UserIsRegistered_UpdatePassword()
     {
@@ -331,9 +322,7 @@ public class UserTests
         Assert.Equal(newHashedPassword, user.PasswordHash);
     }
 
-    // -----------------------------------------------------------------------
-    // ChangePassword - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void ChangePassword_UserIsGuest_ThrowDomainException()
     {
@@ -352,9 +341,8 @@ public class UserTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // VerifyEmail - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method VerifyEmail()
+    // Attribute validation tests.
     [Fact]
     public void VerifyEmail_EmailIsNotVerified_VerifyEmail()
     {
@@ -372,9 +360,7 @@ public class UserTests
         Assert.True(user.VerifiedEmail);
     }
 
-    // -----------------------------------------------------------------------
-    // VerifyEmail - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void VerifyEmail_EmailIsAlreadyVerified_ThrowDomainException()
     {
@@ -410,9 +396,8 @@ public class UserTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // PromoteFromGuest - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method PromoteFromGuest()
+    // Attribute validation tests.
     [Fact]
     public void PromoteFromGuest_EmailIsValid_PromotedToRegistered()
     {
@@ -449,9 +434,7 @@ public class UserTests
         Assert.Equal(hashedPassword, user.PasswordHash);
     }
 
-    // -----------------------------------------------------------------------
-    // PromoteFromGuest - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void PromoteFromGuest_UserIsNotGuest_ThrowDomainException()
     {
@@ -470,9 +453,8 @@ public class UserTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // UpdateAvatar - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method UpdateAvatar()
+    // Attribute validation tests.
     [Fact]
     public void UpdateAvatar_ImageIsValid_UpdateAvatarImage()
     {
@@ -483,8 +465,8 @@ public class UserTests
 
         User user = User.CreateRegistered(username, email, hashedPassword);
 
-        // "Random" image for testing purposes. I regret nothing.
-        string testProjectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+        string testProjectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+
         byte[] image = File.ReadAllBytes(testProjectPath + "/resources/mistah.jpg");
 
         // Act
@@ -494,9 +476,7 @@ public class UserTests
         Assert.Equal(image, user.Avatar);
     }
 
-    // -----------------------------------------------------------------------
-    // UpdateAvatar - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void UpdateAvatar_ImageIsNull_ThrowDomainException()
     {

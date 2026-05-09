@@ -6,9 +6,8 @@ namespace MemoryGame.Tests;
 
 public class MatchParticipationTests
 {
-    // -----------------------------------------------------------------------
-    // AddPoints - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method AddPoints()
+    // Attribute validation tests.
     [Fact]
     public void AddPoints_PointsAreValid_UpdateScore()
     {
