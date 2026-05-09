@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MemoryGame.Infrastructure.Migrations
 {
     [DbContext(typeof(MemoryGameDbContext))]
-    [Migration("20260328191555_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260427021143_AddUsernameToPendingRegistration")]
+    partial class AddUsernameToPendingRegistration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -327,6 +327,11 @@ namespace MemoryGame.Infrastructure.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)")
                         .HasColumnName("pin");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("username");
 
                     b.HasKey("Id")
                         .HasName("pk_pending_registrations");
