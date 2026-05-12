@@ -94,8 +94,6 @@ public partial class LobbyViewModel : ObservableObject
         _lobbyService.ErrorReceived += OnErrorReceived;
         _chatService.MessageReceived += OnChatMessageReceived;
         _gameService.GameStarted += OnGameStarted;
-        _lobbyService.LobbyInviteReceived += OnLobbyInviteReceived;
-        _lobbyService.LobbyInviteSent += OnLobbyInviteSent;
     }
 
     private void UnsubscribeEvents()
@@ -110,8 +108,6 @@ public partial class LobbyViewModel : ObservableObject
         _lobbyService.ErrorReceived -= OnErrorReceived;
         _chatService.MessageReceived -= OnChatMessageReceived;
         _gameService.GameStarted -= OnGameStarted;
-        _lobbyService.LobbyInviteReceived -= OnLobbyInviteReceived;
-        _lobbyService.LobbyInviteSent -= OnLobbyInviteSent;
     }
 
     // ── Server Event Handlers ──────────────────────────────────────────────
@@ -167,8 +163,13 @@ public partial class LobbyViewModel : ObservableObject
         App.Current.Dispatcher.Invoke(() =>
         {
             _isGameStarting = true;
+            var playersSnapshot = Players.ToList();
             UnsubscribeEvents();
-            // TODO: Navigate to the multiplayer board view when implemented
+
+            _navigation.NavigateTo<GameBoardViewModel>(vm =>
+            {
+                vm.Initialize(cards, playersSnapshot);
+            });
         });
     }
 
@@ -199,28 +200,6 @@ public partial class LobbyViewModel : ObservableObject
             _dialog.ShowMessage(message,
                 LocalizationManager.Instance["Global_Title_Error"],
                 DialogButton.OK, DialogIcon.Error);
-        });
-    }
-
-    private void OnLobbyInviteReceived(string inviterUsername, string gameCode)
-    {
-        if (_disposed) return;
-        App.Current.Dispatcher.Invoke(() =>
-        {
-            string message = LocalizationManager.Instance.Format("MainMenu_Message_LobbyInvite", inviterUsername, gameCode);
-            AddSystemMessage(message);
-        });
-    }
-
-    private void OnLobbyInviteSent(string targetUsername, bool isOnline)
-    {
-        if (_disposed) return;
-        App.Current.Dispatcher.Invoke(() =>
-        {
-            string message = isOnline 
-                ? LocalizationManager.Instance.Format("Lobby_Message_InviteSentRealTime", targetUsername)
-                : LocalizationManager.Instance.Format("Lobby_Message_InviteSentEmail", targetUsername);
-            AddSystemMessage(message);
         });
     }
 
@@ -285,21 +264,6 @@ public partial class LobbyViewModel : ObservableObject
 
         UnsubscribeEvents();
         _navigation.GoBack();
-    }
-
-    [RelayCommand]
-    private async Task InviteFriendAsync()
-    {
-        // Placeholder for user input prompt. Ideally dialog service would ask for a Friend ID.
-        // As a quick implementation, we can simulate or we might have an InviteFriend UI.
-        try
-        {
-            // await _lobbyService.InviteFriendAsync(targetUserId);
-            AddSystemMessage("Friend invitation not yet implemented in UI.");
-        }
-        catch
-        {
-        }
     }
 
     [RelayCommand]
