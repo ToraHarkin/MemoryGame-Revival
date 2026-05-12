@@ -83,6 +83,12 @@ public class LobbyService : ILobbyService
         await connection.InvokeAsync("VoteToKick", targetUsername);
     }
 
+    public async Task KickPlayerAsync(string targetUsername)
+    {
+        var connection = GetActiveConnection();
+        await connection.InvokeAsync("KickPlayer", targetUsername);
+    }
+
     public async Task GetPublicLobbiesAsync()
     {
         var connection = GetActiveConnection();

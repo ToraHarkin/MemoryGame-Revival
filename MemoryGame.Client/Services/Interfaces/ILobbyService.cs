@@ -32,6 +32,7 @@ public interface ILobbyService
     Task LeaveLobbyAsync();
     
     Task VoteToKickAsync(string targetUsername);
+    Task KickPlayerAsync(string targetUsername);
     Task GetPublicLobbiesAsync();
     Task InviteFriendAsync(int targetUserId);
 }
