@@ -18,6 +18,9 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponse>
     private readonly IUserSessionRepository _userSessionRepository;
     private readonly IUnitOfWork _unitOfWork;
 
+    /// <summary>
+    /// Initializes the handler with its dependencies.
+    /// </summary>
     public LoginCommandHandler(
         IUserRepository userRepository,
         IPasswordService passwordService,
@@ -47,7 +50,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponse>
         if (!user.VerifiedEmail)
             throw new DomainException(DomainErrors.Auth.EmailNotVerified);
 
-        var accessToken  = _jwtService.GenerateAccessToken(user);
+        var accessToken = _jwtService.GenerateAccessToken(user);
         var refreshToken = _jwtService.GenerateRefreshToken();
 
         var session = UserSession.Create(refreshToken, user.Id, TimeSpan.FromDays(7));
@@ -55,7 +58,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponse>
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return new AuthResponse(
-            AccessToken:  accessToken,
+            AccessToken: accessToken,
             RefreshToken: refreshToken,
             User: new UserDto(user.Id, user.Username, user.Email.Value, user.IsGuest, user.VerifiedEmail));
     }

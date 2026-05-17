@@ -6,9 +6,8 @@ namespace MemoryGame.Tests;
 
 public class EmailTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_ValueIsValid_ReturnNewEmail()
     {
@@ -22,9 +21,7 @@ public class EmailTests
         Assert.Equal(value, email.Value);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_ValueIsNull_ThrowDomainException()
     {

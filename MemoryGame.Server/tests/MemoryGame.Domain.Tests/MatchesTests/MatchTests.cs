@@ -8,9 +8,8 @@ namespace MemoryGame.Tests;
 
 public class MatchTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_StatusIsInProgress_ReturnNewMatch()
     {
@@ -22,9 +21,8 @@ public class MatchTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // Finish - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Finish()
+    // Attribute validation tests.
     [Fact]
     public void Finish_WinnerIdIsValid_SetMatchStatusAsFinished()
     {
@@ -41,9 +39,7 @@ public class MatchTests
         Assert.Equal(MatchStatus.Finished, match.Status);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Finish_MatchStatusIsNotInProgress_ThrowDomainException()
     {
@@ -78,9 +74,8 @@ public class MatchTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // Cancel - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Cancel()
+    // Attribute validation tests.
     [Fact]
     public void Cancel_CancelIsValid_SetMatchStatusAsCancelled()
     {
@@ -94,9 +89,7 @@ public class MatchTests
         Assert.Equal(MatchStatus.Cancelled, match.Status);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Cancel_MatchStatusIsNotInProgress_ThrowDomainException()
     {
@@ -112,9 +105,8 @@ public class MatchTests
         );
     }
 
-    // -----------------------------------------------------------------------
-    // AddParticipant - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method AddParticipant()
+    // Attribute validation tests.
     [Fact]
     public void AddParticipant_UserIdIsValid_ReturnNewMatchParticipation()
     {
@@ -145,9 +137,7 @@ public class MatchTests
         Assert.Equal(1, participation.MatchId);
     }
 
-    // -----------------------------------------------------------------------
-    // AddParticipant - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void AddParticipant_MatchStatusIsNotInProgress_ThrowDomainException()
     {

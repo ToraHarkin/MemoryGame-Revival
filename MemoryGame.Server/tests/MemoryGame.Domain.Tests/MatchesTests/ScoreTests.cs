@@ -6,9 +6,8 @@ namespace MemoryGame.Tests;
 
 public class ScoreTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_ValueIsValid_ReturnNewScore()
     {
@@ -22,9 +21,7 @@ public class ScoreTests
         Assert.Equal(value, score.Value);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_ValueIsNotValid_ThrowDomainException()
     {
@@ -39,9 +36,8 @@ public class ScoreTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // Add - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Add()
+    // Attribute validation tests.
     [Fact]
     public void Add_PointsAreValid_ReturnUpdatedScore()
     {
@@ -55,9 +51,7 @@ public class ScoreTests
         Assert.Equal(750, score.Value);
     }
 
-    // -----------------------------------------------------------------------
-    // Add - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Add_PointsAreNotValid_ThrowDomainException()
     {

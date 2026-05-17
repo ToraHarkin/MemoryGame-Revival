@@ -6,9 +6,8 @@ namespace MemoryGame.Tests;
 
 public class UserSessionTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method CreateRegistered()
+    // Attribute validation tests.
     [Fact]
     public void Create_TokenIsValid_ReturnNewUserSession()
     {
@@ -39,9 +38,7 @@ public class UserSessionTests
         Assert.Equal(userId, session.UserId);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_TokenIsNull_ThrowDomainException()
     {
@@ -72,9 +69,8 @@ public class UserSessionTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // IsExpired - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method IsExpired()
+    // Attribute validation tests.
     [Fact]
     public void IsExpired_Expired_ReturnTrue()
     {
@@ -110,9 +106,7 @@ public class UserSessionTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // Renew - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Renew()
     [Fact]
     public void Renew_DurationIsValid_UpdateExpirationDate()
     {

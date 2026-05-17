@@ -2,12 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MemoryGame.Application.Common.Interfaces;
-using MemoryGame.Domain.Users;
+using MemoryGame.Domain.Cards;
+using MemoryGame.Domain.Matches;
+using MemoryGame.Domain.Penalties;
 using MemoryGame.Domain.Social;
-using MemoryGame.Application.Lobbies.Interfaces;
-using MemoryGame.Infrastructure.Lobbies;
+using MemoryGame.Domain.Users;
 using MemoryGame.Infrastructure.Persistence;
 using MemoryGame.Infrastructure.Repositories;
+using MemoryGame.Application.Lobbies.Interfaces;
+using MemoryGame.Infrastructure.Lobbies;
 using MemoryGame.Infrastructure.Services;
 
 namespace MemoryGame.Infrastructure;
@@ -34,6 +37,9 @@ public static class DependencyInjection
         services.AddScoped<IPendingRegistrationRepository, PendingRegistrationRepository>();
         services.AddScoped<IUserSessionRepository, UserSessionRepository>();
         services.AddScoped<ISocialRepository, SocialRepository>();
+        services.AddScoped<IMatchRepository, MatchRepository>();
+        services.AddScoped<ICardRepository, CardRepository>();
+        services.AddScoped<IPenaltyRepository, PenaltyRepository>();
 
         // Lobby (singletons — in-memory state shared across requests)
         services.AddSingleton<ILobbyManager, LobbyManager>();

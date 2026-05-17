@@ -96,12 +96,10 @@ public partial class HostLobbyViewModel : ObservableObject
         _lobbyService.PlayerListUpdated += OnPlayerListUpdated;
         _lobbyService.PlayerJoined += OnPlayerJoined;
         _lobbyService.PlayerLeft += OnPlayerLeft;
+        _lobbyService.Kicked += OnKicked;
         _lobbyService.ErrorReceived += OnErrorReceived;
         _chatService.MessageReceived += OnChatMessageReceived;
         _gameService.GameStarted += OnGameStarted;
-        _lobbyService.Kicked += OnKicked;
-        _lobbyService.LobbyInviteReceived += OnLobbyInviteReceived;
-        _lobbyService.LobbyInviteSent += OnLobbyInviteSent;
     }
 
     private void UnsubscribeEvents()
@@ -112,12 +110,10 @@ public partial class HostLobbyViewModel : ObservableObject
         _lobbyService.PlayerListUpdated -= OnPlayerListUpdated;
         _lobbyService.PlayerJoined -= OnPlayerJoined;
         _lobbyService.PlayerLeft -= OnPlayerLeft;
+        _lobbyService.Kicked -= OnKicked;
         _lobbyService.ErrorReceived -= OnErrorReceived;
         _chatService.MessageReceived -= OnChatMessageReceived;
         _gameService.GameStarted -= OnGameStarted;
-        _lobbyService.Kicked -= OnKicked;
-        _lobbyService.LobbyInviteReceived -= OnLobbyInviteReceived;
-        _lobbyService.LobbyInviteSent -= OnLobbyInviteSent;
     }
 
     // ── Server Event Handlers ──────────────────────────────────────────────
@@ -173,8 +169,13 @@ public partial class HostLobbyViewModel : ObservableObject
         App.Current.Dispatcher.Invoke(() =>
         {
             _isGameStarting = true;
+            var playersSnapshot = Players.ToList();
             UnsubscribeEvents();
-            // TODO: Navigate to the multiplayer board view when implemented
+
+            _navigation.NavigateTo<GameBoardViewModel>(vm =>
+            {
+                vm.Initialize(cards, playersSnapshot);
+            });
         });
     }
 
@@ -201,33 +202,10 @@ public partial class HostLobbyViewModel : ObservableObject
         {
             UnsubscribeEvents();
             _dialog.ShowMessage(
-                LocalizationManager.Instance["Lobby_Message_Kicked"],
-                LocalizationManager.Instance["Global_Title_Information"],
+                LocalizationManager.Instance["Lobby_Message_Kicked"] ?? "You have been kicked.",
+                LocalizationManager.Instance["Global_Title_Information"] ?? "Information",
                 DialogButton.OK, DialogIcon.Information);
             _navigation.GoBack();
-        });
-    }
-
-    private void OnLobbyInviteReceived(string inviterUsername, string gameCode)
-    {
-        if (_disposed) return;
-        App.Current.Dispatcher.Invoke(() =>
-        {
-            // Usually global, but just to notify here
-            string message = LocalizationManager.Instance.Format("MainMenu_Message_LobbyInvite", inviterUsername, gameCode);
-            AddSystemMessage(message);
-        });
-    }
-
-    private void OnLobbyInviteSent(string targetUsername, bool isOnline)
-    {
-        if (_disposed) return;
-        App.Current.Dispatcher.Invoke(() =>
-        {
-            string message = isOnline 
-                ? LocalizationManager.Instance.Format("Lobby_Message_InviteSentRealTime", targetUsername)
-                : LocalizationManager.Instance.Format("Lobby_Message_InviteSentEmail", targetUsername);
-            AddSystemMessage(message);
         });
     }
 
@@ -302,7 +280,7 @@ public partial class HostLobbyViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task VoteToKickAsync(LobbyPlayerDto player)
+    private async Task KickPlayerAsync(LobbyPlayerDto player)
     {
         if (player.IsHost) return;
 
@@ -315,28 +293,11 @@ public partial class HostLobbyViewModel : ObservableObject
 
         try
         {
-            await _lobbyService.VoteToKickAsync(player.Username);
+            await _lobbyService.KickPlayerAsync(player.Username);
         }
         catch
         {
             // Best-effort
-        }
-    }
-
-    [RelayCommand]
-    private async Task InviteFriendAsync()
-    {
-        // Placeholder for user input prompt. Ideally dialog service would ask for a Friend ID.
-        // As a quick implementation, we can simulate or we might have an InviteFriend UI.
-        // For now, this is a placeholder implementation that fulfills the callback wiring requirement.
-        try
-        {
-            // Example: wait for prompt implementation
-            // await _lobbyService.InviteFriendAsync(targetUserId);
-            AddSystemMessage("Friend invitation not yet implemented in UI.");
-        }
-        catch
-        {
         }
     }
 

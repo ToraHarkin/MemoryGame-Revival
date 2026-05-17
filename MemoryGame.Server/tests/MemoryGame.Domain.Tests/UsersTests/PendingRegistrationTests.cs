@@ -8,9 +8,8 @@ namespace MemoryGame.Tests;
 
 public class PendingRegistrationTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_EmailIsValid_ReturnNewPendingRegistration()
     {
@@ -59,9 +58,7 @@ public class PendingRegistrationTests
         Assert.Equal(hashedPassword, pendingRegistration.HashedPassword);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_PinIsNull_ThrowDomainException()
     {
@@ -158,9 +155,8 @@ public class PendingRegistrationTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // CreateForUpgrade - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method CreateForUpgrade()
+    // Attribute validation tests.
     [Fact]
     public void CreateForUpgrade_EmailIsValid_ReturnNewPendingRegistration()
     {
@@ -209,9 +205,7 @@ public class PendingRegistrationTests
         Assert.Equal(hashedPassword, pendingRegistration.HashedPassword);
     }
 
-    // -----------------------------------------------------------------------
-    // CreateForUpgrade - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void CreateForUpgrade_PinIsNull_ThrowDomainException()
     {
@@ -308,9 +302,8 @@ public class PendingRegistrationTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // UpdatePin - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method UpdatePin()
+    // Attribute validation tests.
     [Fact]
     public void UpdatePin_PinIsValid_UpdatePendingRegistrationPin()
     {
@@ -331,9 +324,7 @@ public class PendingRegistrationTests
         Assert.Equal(newPin, pendingRegistration.Pin);
     }
 
-    // -----------------------------------------------------------------------
-    // UpdatePin - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void UpdatePin_PinIsNull_ThrowDomainException()
     {
@@ -453,9 +444,8 @@ public class PendingRegistrationTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // IsExpired - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method IsExpired()
+    // Attribute validation tests.
     [Fact]
     public void IsExpired_Expired_ReturnTrue()
     {
@@ -492,9 +482,8 @@ public class PendingRegistrationTests
         Assert.False(expired);
     }
 
-    // -----------------------------------------------------------------------
-    // ValidatePin - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method ValidatePin()
+    // Attribute validation tests.
     [Fact]
     public void ValidatePin_PinIsValid_ReturnTrue()
     {

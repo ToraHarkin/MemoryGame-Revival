@@ -12,6 +12,9 @@ public class LogoutCommandHandler : IRequestHandler<LogoutCommand, Unit>
     private readonly IUserSessionRepository _userSessionRepository;
     private readonly IUnitOfWork _unitOfWork;
 
+    /// <summary>
+    /// Initializes the handler with its dependencies.
+    /// </summary>
     public LogoutCommandHandler(IUserSessionRepository userSessionRepository, IUnitOfWork unitOfWork)
     {
         _userSessionRepository = userSessionRepository;
@@ -23,9 +26,11 @@ public class LogoutCommandHandler : IRequestHandler<LogoutCommand, Unit>
     {
         var sessions = await _userSessionRepository.GetByUserIdAsync(request.UserId);
         foreach (var session in sessions)
+        {
             _userSessionRepository.Remove(session);
-
+        }
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+
         return Unit.Value;
     }
 }

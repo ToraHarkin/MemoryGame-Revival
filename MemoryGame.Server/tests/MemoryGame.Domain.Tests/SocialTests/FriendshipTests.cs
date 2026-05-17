@@ -6,9 +6,8 @@ namespace MemoryGame.Tests;
 
 public class FriendshipTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_UserIdIsValid_ReturnNewFriendship()
     {
@@ -37,9 +36,7 @@ public class FriendshipTests
         Assert.Equal(friendId, friendship.FriendId);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_IdsAreTheSame_ThrowDomainException()
     {

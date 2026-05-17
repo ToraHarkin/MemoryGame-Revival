@@ -6,9 +6,8 @@ namespace MemoryGame.Tests;
 
 public class DeckTests
 {
-    // -----------------------------------------------------------------------
-    // Create - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method Create()
+    // Attribute validation tests.
     [Fact]
     public void Create_NameIsValid_ReturnsNewDeck()
     {
@@ -37,9 +36,7 @@ public class DeckTests
         Assert.Equal(matchId, deck.MatchId);
     }
 
-    // -----------------------------------------------------------------------
-    // Create - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void Create_NameIsNull_ThrowsDomainException()
     {
@@ -95,9 +92,8 @@ public class DeckTests
     }
 
 
-    // -----------------------------------------------------------------------
-    // AddCard - Happy Paths
-    // -----------------------------------------------------------------------
+    // Method AddCard()
+    // Attribute validation tests.
     [Fact]
     public void AddCard_NameIsValid_ReturnsNewCard()
     {
@@ -154,9 +150,7 @@ public class DeckTests
         Assert.Null(newCard.Description);
     }
 
-    // -----------------------------------------------------------------------
-    // AddCard - Invalid/Exception Paths
-    // -----------------------------------------------------------------------
+    // Exception throw tests.
     [Fact]
     public void AddCard_NameIsNull_ThrowsDomainException()
     {
